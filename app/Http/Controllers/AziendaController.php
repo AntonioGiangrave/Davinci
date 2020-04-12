@@ -11,9 +11,9 @@ class AziendaController extends Controller
 
     public function showAll(){
 
-        $aziende = Azienda::all();
+        $companies = Azienda::all();
 
-        return response()->json($aziende, 200);
+        return response()->json($companies, 200);
 
     }
 

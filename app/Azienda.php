@@ -19,4 +19,11 @@ class Azienda extends Model
         'ragioneSociale',
     ];
     
+
+    public function vouchers(){
+
+        return $this->hasMany(Voucher::class);
+
+    }
+
 }
