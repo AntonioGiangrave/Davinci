@@ -20,9 +20,7 @@ class GetCompaniesTest extends TestCase
      */
     public function testGetCompanies()
     {
-        $company1 = factory(Azienda::class)->create();
-
-        $company2 = factory(Azienda::class)->create();
+        $companies = factory(Azienda::class, 2)->create();
 
 
         $response = $this->get('/api/aziende');
@@ -31,12 +29,12 @@ class GetCompaniesTest extends TestCase
         $response 
             ->assertStatus(200)
             ->assertJsonFragment([
-                'id' => $company1->id,
-                'ragioneSociale'=> $company1->ragioneSociale,
+                'id' => $companies[0]->id,
+                'ragioneSociale'=> $companies[0]->ragioneSociale,
             ])
             ->assertJsonFragment([
-                'id' => $company2->id,
-                'ragioneSociale'=> $company2->ragioneSociale,
+                'id' => $companies[1]->id,
+                'ragioneSociale'=> $companies[1]->ragioneSociale,
             ]);
 
     }

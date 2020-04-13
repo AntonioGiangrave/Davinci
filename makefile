@@ -12,6 +12,7 @@ docker_up_detached:
 test:
 	clear
 	./vendor/bin/phpunit
+	php artisan dusk
 
 serve:
 	make docker_up_detached

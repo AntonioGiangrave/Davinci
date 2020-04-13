@@ -25,9 +25,6 @@ class GetVouchersTest extends TestCase
     {
         $company = factory(Azienda::class)->create();
 
-        // $voucher1 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
-        // $voucher2 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
-
         $faker = \Faker\Factory::create();
 
         $gratuito = $faker->boolean ? 1 : 0;

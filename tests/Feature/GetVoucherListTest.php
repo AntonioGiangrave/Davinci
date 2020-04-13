@@ -21,32 +21,57 @@ class GetVoucherListTest extends TestCase
      */
     public function testGetVouchersList()
     {
-        $company1 = factory(Azienda::class)->create();
+        $companies = factory(Azienda::class, 2)->create();
 
-        $voucher1 = factory(Voucher::class)->create(['azienda_id' => $company1->id]);
-        $voucher2 = factory(Voucher::class)->create(['azienda_id' => $company1->id]);
-
-
-        $company2 = factory(Azienda::class)->create();
-
-        $voucher1 = factory(Voucher::class)->create(['azienda_id' => $company2->id]);
-        $voucher2 = factory(Voucher::class)->create(['azienda_id' => $company2->id]);
-
+        $voucher1 = factory(Voucher::class)->create([
+            'azienda_id' => $companies[0]->id,  
+            'gratuito' => 1,
+            'sconto' => 0]);
+        
+        $voucher2 = factory(Voucher::class)->create([
+            'azienda_id' => $companies[0]->id,  
+            'gratuito' => 1,
+            'sconto' => 0]);
+        
+        
+        $voucher3 = factory(Voucher::class)->create([
+            'azienda_id' => $companies[1]->id,  
+            'gratuito' => 1,
+            'sconto' => 0]);
+        
 
         $response = $this->get('/api/vouchers/');
 
 
         $response 
             ->assertStatus(200)
-            // ->assertJsonFragment([
-            //     'id' => $company->id,
-            //     'ragioneSociale' => $company1->ragioneSociale,
-            // ])  
-            // ->assertJsonStructure([
-            //     'id' ,
-            //     'ragioneSociale' ,
-            //     'vouchers',
-            // ])
+            ->assertJson([
+                [   
+                    'azienda_id' => $companies[0]->id,
+                    'voucher' => $voucher1->voucher,
+                    'azienda' => [
+                        'id' => $companies[0]->id,
+                        'ragioneSociale' => $companies[0]->ragioneSociale,
+                    ]
+                ],
+                [
+                    'azienda_id' => $companies[0]->id,
+                    'voucher' => $voucher2->voucher,
+                    'azienda' => [
+                        'id' => $companies[0]->id,
+                        'ragioneSociale' => $companies[0]->ragioneSociale,
+                    ]
+                ],
+                [
+                    'azienda_id' => $companies[1]->id,
+                    'voucher' => $voucher3->voucher,
+                    'azienda' => [
+                        'id' => $companies[1]->id,
+                        'ragioneSociale' => $companies[1]->ragioneSociale,
+                    ]
+                ],
+               
+                ])
             ;
 
     }
