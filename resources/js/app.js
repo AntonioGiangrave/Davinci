@@ -8,51 +8,36 @@ Vue.use(VueRouter);
 import VueAxios from "vue-axios";
 import axios from "axios";
 
-import BootstrapVue from "bootstrap-vue";
-Vue.use(BootstrapVue);
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 
 import App from "./App.vue";
 Vue.use(VueAxios, axios);
 
-import HomeComponent from "./components/HomeComponent.vue";
-import CreateComponent from "./components/CreateComponent.vue";
-import IndexComponent from "./components/IndexComponent.vue";
-import EditComponent from "./components/EditComponent.vue";
+
+import RagioniSocialiComponent from "./components/RagioniSociali.vue";
+import VoucherComponent from "./components/Voucher.vue";
 
 const routes = [
     {
-        name: "home",
+        name: "index",
         path: "/",
-        component: HomeComponent
+        component: RagioniSocialiComponent
     },
     {
-        name: "create",
-        path: "/create",
-        component: CreateComponent
+        name: "ragionisociali",
+        path: "/ragionisociali",
+        component: RagioniSocialiComponent
     },
     {
-        name: "posts",
-        path: "/posts",
-        component: IndexComponent
-    },
-    {
-        name: "edit",
-        path: "/edit/:id",
-        component: EditComponent
+        name: "voucher",
+        path: "/voucher/:id",
+        component: VoucherComponent
     }
 ];
 
 const router = new VueRouter({ mode: "history", routes: routes });
 const app = new Vue(Vue.util.extend({ router }, App)).$mount("#app");
-
-// window.Vue = require('vue');
-
-// import App from './App.vue';
-
-// const app = new Vue({
-//   el: '#app',
-//   components: {
-//     App
-//   },
-//   render: h => h(App)
-// });

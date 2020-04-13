@@ -31,18 +31,15 @@ class Controller extends BaseController
             'ragioneSociale' => $request->ragioneSociale
         ]);
 
-
         $vouchers = generateVoucher($company->ragioneSociale, $request->numeroVoucher);
 
         foreach ($vouchers as $voucher) {
-
             Voucher::create([
                 'azienda_id' => $company->id,
                 'voucher' => $voucher, 
                 'gratuito' => $request->gratuito,
                 'sconto' => $request->sconto,
             ]);
-
         }
 
         return response()->json([

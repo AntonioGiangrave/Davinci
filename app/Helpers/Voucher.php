@@ -6,6 +6,7 @@
 
         $vouchers = [];
 
+        // todo: check infinite loop
         while (count($vouchers) <= $quantity) {
 
             // prefix
@@ -14,7 +15,7 @@
             // generate random code
             $voucher .= substr(str_shuffle($alphabet), 0, $code_length);
 
-
+            // prevent duplicate
             if(!in_array($voucher, $vouchers)){
                 $vouchers[] = $voucher;
             }

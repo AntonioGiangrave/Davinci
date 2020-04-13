@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/aziende', 'AziendaController@showAll');
 
+Route::get('/vouchers/{id}/', 'AziendaController@getVouchers');
+
 Route::post('/create-voucher', 'Controller@createVoucher');

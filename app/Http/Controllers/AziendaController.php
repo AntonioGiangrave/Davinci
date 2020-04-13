@@ -17,6 +17,14 @@ class AziendaController extends Controller
 
     }
 
+    public function getVouchers(Request $request, $id){
+
+        $company = Azienda::with('vouchers')->find($id);
+
+        return response()->json($company, 200);
+
+    }
+
 
 
 }
