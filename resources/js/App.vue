@@ -1,23 +1,4 @@
 <template>
-    <!-- <div class="container">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/ragionisociali" class="nav-link">Ragioni Sociali</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/voucherlist" class="nav-link">Voucher </router-link>
-        </li>
-        <li class="nav-item navbar-right">
-          <button>Populate Db</button>
-        </li>
-
-      </ul>
-    </nav><br />
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
-  </div> -->
 
     <div class="container">
         <b-navbar toggleable="lg" type="dark" variant="info">

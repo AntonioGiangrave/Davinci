@@ -1,4 +1,4 @@
-# Esercitazione Davinci
+# Davinci
 
 
 ### Project setup
