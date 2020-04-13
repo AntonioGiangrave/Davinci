@@ -23,7 +23,7 @@ rename .env.example -> .env  and check
 make serve
 ```
 
-and go to htt://test.davinci.it:8000
+and go to http://test.davinci.it:8000
 
 ### Project start - Single
 

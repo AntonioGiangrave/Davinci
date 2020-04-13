@@ -4,12 +4,14 @@
 
 use App\Model;
 use App\Voucher;
+use App\Azienda;
 use Faker\Generator as Faker;
 
 $factory->define(Voucher::class, function (Faker $faker, $params) {
+
+    $company = Azienda::find($params['azienda_id']);
+
     return [
-        'voucher' => 'dffdf',
-        'gratuito' => 1,
-        'sconto' => 0,
+        'voucher' => generateVoucher($company->ragioneSociale, 1)[0],
     ];
 });

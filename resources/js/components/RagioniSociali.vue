@@ -6,7 +6,7 @@
             size="sm"
             class="my-2 my-sm-0"
             type="button"
-            v-if="companies.length"
+            
             @click="seed"
         >
             <b-icon icon="cloud-upload" font-scale="1"></b-icon> Populate

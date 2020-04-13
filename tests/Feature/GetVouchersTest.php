@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Azienda;
 use App\Voucher;
+use Faker\Generator as Faker;
+
 
 class GetVouchersTest extends TestCase
 {
@@ -23,9 +25,20 @@ class GetVouchersTest extends TestCase
     {
         $company = factory(Azienda::class)->create();
 
-        $voucher1 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
-        $voucher2 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
+        // $voucher1 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
+        // $voucher2 = factory(Voucher::class)->create(['azienda_id' => $company->id]);
 
+        $faker = \Faker\Factory::create();
+
+        $gratuito = $faker->boolean ? 1 : 0;
+
+        $sconto = $gratuito ? 0 : $faker->randomDigit;
+
+        factory(Voucher::class)->create([
+            'azienda_id' => $company->id, 
+            'gratuito' => $gratuito,
+            'sconto' => $sconto
+            ]);
 
         $response = $this->get('/api/vouchers/'.$company->id);
 
