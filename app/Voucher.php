@@ -16,6 +16,11 @@ class Voucher extends Model
     ];
     
 
+    public function azienda(){
+        
+        return $this->belongsTo(Azienda::class);
+
+    }
 
     
 

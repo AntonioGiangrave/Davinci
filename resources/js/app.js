@@ -8,18 +8,17 @@ Vue.use(VueRouter);
 import VueAxios from "vue-axios";
 import axios from "axios";
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
-
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 import App from "./App.vue";
 Vue.use(VueAxios, axios);
 
-
 import RagioniSocialiComponent from "./components/RagioniSociali.vue";
 import VoucherComponent from "./components/Voucher.vue";
+import VoucherListComponent from "./components/VoucherList.vue";
 
 const routes = [
     {
@@ -36,6 +35,11 @@ const routes = [
         name: "voucher",
         path: "/voucher/:id",
         component: VoucherComponent
+    },
+    {
+        name: "voucherlist",
+        path: "/voucherlist/",
+        component: VoucherListComponent
     }
 ];
 

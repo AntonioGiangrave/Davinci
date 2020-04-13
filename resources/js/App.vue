@@ -6,7 +6,7 @@
           <router-link to="/ragionisociali" class="nav-link">Ragioni Sociali</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/voucher" class="nav-link">Voucher </router-link>
+          <router-link to="/voucherlist" class="nav-link">Voucher </router-link>
         </li>
       </ul>
     </nav><br />

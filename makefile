@@ -14,5 +14,7 @@ test:
 	./vendor/bin/phpunit
 
 serve:
+	make docker_up_detached
+	npm run dev
 	php artisan config:clear
-	php artisan serve --host=test.davinci --port=8000
+	php artisan serve --host=test.davinci.it --port=8000

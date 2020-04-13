@@ -16,10 +16,14 @@
                     <td>{{ voucher.id }}</td>
                     <td>{{ voucher.voucher }}</td>
                     <td>
-                        <b-icon icon="check" font-scale="2" v-if="voucher.gratuito"></b-icon>
+                        <b-icon
+                            icon="check"
+                            font-scale="2"
+                            v-if="voucher.gratuito"
+                        ></b-icon>
                     </td>
                     <td>
-                        <b-icon icon="slash" font-scale="2" v-if="!voucher.sconto"></b-icon>
+                        {{ voucher.sconto }}
                     </td>
                     <td>{{ dateFormat(voucher.created_at) }}</td>
                 </tr>

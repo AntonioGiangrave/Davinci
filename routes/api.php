@@ -22,4 +22,6 @@ Route::get('/aziende', 'AziendaController@showAll');
 
 Route::get('/vouchers/{id}/', 'AziendaController@getVouchers');
 
+Route::get('/vouchers', 'AziendaController@getVouchersList');
+
 Route::post('/create-voucher', 'Controller@createVoucher');

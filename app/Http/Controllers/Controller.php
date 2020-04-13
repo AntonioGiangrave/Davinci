@@ -52,4 +52,12 @@ class Controller extends BaseController
 
     }
 
+    public function getVouchersList(Request $request){
+
+        $Vouchers = Voucher::with('azienda')->orderBy('created_at', 'desc')->get();
+
+        return response()->json($Vouchers, 200);
+
+    }
+
 }
