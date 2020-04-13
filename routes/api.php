@@ -25,3 +25,7 @@ Route::get('/vouchers/{id}/', 'AziendaController@getVouchers');
 Route::get('/vouchers', 'AziendaController@getVouchersList');
 
 Route::post('/create-voucher', 'Controller@createVoucher');
+
+Route::get('/seed', function() {
+    return Artisan::call('db:seed');
+});

@@ -1,6 +1,18 @@
 <template>
     <div>
         <h1>Ragioni Sociali</h1>
+
+        <b-button
+            size="sm"
+            class="my-2 my-sm-0"
+            type="button"
+            v-if="companies.length"
+            @click="seed"
+        >
+            <b-icon icon="cloud-upload" font-scale="1"></b-icon> Populate
+            DB</b-button
+        >
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -17,7 +29,10 @@
                     <td>{{ dateFormat(company.created_at) }}</td>
                     <td>
                         <router-link
-                            :to="{ name: 'voucher', params: { id: company.id } }"
+                            :to="{
+                                name: 'voucher',
+                                params: { id: company.id }
+                            }"
                             class="btn btn-primary"
                             >View</router-link
                         >
@@ -29,7 +44,9 @@
 </template>
 
 <script>
-import { format } from 'date-fns'
+import { format } from "date-fns";
+import http from "../http-common";
+
 export default {
     data() {
         return {
@@ -37,20 +54,26 @@ export default {
         };
     },
     created() {
-        let uri = "http://localhost:8000/api/aziende";
-        this.axios.get(uri).then(response => {
-            this.companies = response.data;
-        });
+        this.fetchCompanies();
     },
     methods: {
-        deletePost(id) {
-            let uri = `http://localhost:8000/api/post/delete/${id}`;
-            this.axios.delete(uri).then(response => {
-                this.posts.splice(this.posts.indexOf(id), 1);
+        dateFormat(date) {
+            return format(new Date(date), "dd/mm/yyyy HH:MM");
+        },
+        fetchCompanies() {
+            const uri = "/aziende";
+
+            http.get(uri).then(response => {
+                this.companies = response.data;
             });
         },
-        dateFormat(date ){
-            return  format(new Date(date), 'dd/mm/yyyy HH:MM');
+        seed() {
+            const uri = "/seed";
+
+            http.get(uri).then(response => {
+                console.log("seeded");
+                this.fetchCompanies();
+            });
         }
     }
 };

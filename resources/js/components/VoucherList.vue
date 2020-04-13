@@ -36,6 +36,7 @@
 
 <script>
 import { format } from "date-fns";
+import http from "../http-common";
 
 export default {
     data() {
@@ -44,8 +45,9 @@ export default {
         };
     },
     created() {
-        let uri = `http://localhost:8000/api/vouchers/`;
-        this.axios.get(uri).then(response => {
+        const uri = `/vouchers/`;
+
+        http.get(uri).then(response => {
             this.vouchers = response.data;
         });
     },

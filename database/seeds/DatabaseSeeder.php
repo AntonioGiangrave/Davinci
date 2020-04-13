@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Azienda;
+use App\Voucher;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        factory(Azienda::class, 3)->create()->each(function ($company) {
+            $company->vouchers()->saveMany(
+                factory(Voucher::class, 5)->make(['azienda_id' => $company->id])
+            );
+        });
     }
 }

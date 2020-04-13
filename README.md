@@ -17,11 +17,13 @@ rename .env.example -> .env  and check
 ```
 
 
-### Project start - AllInOne
+### Project start - All In One
 
 ```
 make serve
 ```
+
+and go to htt://test.davinci.it:8000
 
 ### Project start - Single
 
