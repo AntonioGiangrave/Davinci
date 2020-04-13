@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use App\Azienda;
+use App\Company;
 
 class CanSeeCompanyTest extends DuskTestCase
 {
@@ -20,7 +20,7 @@ class CanSeeCompanyTest extends DuskTestCase
     public function testCanSeeCompany()
     {
 
-        $company = factory(Azienda::class)->create();
+        $company = factory(Company::class)->create();
 
         $this->browse(function (Browser $browser) use($company) {
             $browser->visit('/')

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Azienda;
+use App\Company;
 use App\Voucher;
 use Faker\Generator as Faker;
 
@@ -23,7 +23,7 @@ class GetVouchersTest extends TestCase
      */
     public function testGetVouchers()
     {
-        $company = factory(Azienda::class)->create();
+        $company = factory(Company::class)->create();
 
         $faker = \Faker\Factory::create();
 
@@ -32,7 +32,7 @@ class GetVouchersTest extends TestCase
         $sconto = $gratuito ? 0 : $faker->randomDigit;
 
         factory(Voucher::class)->create([
-            'azienda_id' => $company->id, 
+            'company_id' => $company->id, 
             'gratuito' => $gratuito,
             'sconto' => $sconto
             ]);

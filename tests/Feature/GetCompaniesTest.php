@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Azienda;
+use App\Company;
 
 class GetCompaniesTest extends TestCase
 {
@@ -20,10 +20,10 @@ class GetCompaniesTest extends TestCase
      */
     public function testGetCompanies()
     {
-        $companies = factory(Azienda::class, 2)->create();
+        $companies = factory(Company::class, 2)->create();
 
 
-        $response = $this->get('/api/aziende');
+        $response = $this->get('/api/companies');
 
 
         $response 

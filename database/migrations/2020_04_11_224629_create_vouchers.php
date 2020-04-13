@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVoucher extends Migration
+class CreateVouchers extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateVoucher extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedInteger('azienda_id');
-            $table->foreignId('azienda_id')->references('id')->on('aziende');
+            // $table->unsignedInteger('company_id');
+            $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('voucher');
             $table->tinyInteger('gratuito')->nullable();
             $table->integer('sconto')->nullable();

@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Azienda extends Model
+class Company extends Model
 {
     //
 
 
-    protected $table = 'aziende';
+    protected $table = 'companies';
     /**
      * The attributes that are mass assignable.
      *

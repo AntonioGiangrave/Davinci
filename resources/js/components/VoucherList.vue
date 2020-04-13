@@ -8,7 +8,7 @@
                     <th>Voucher</th>
                     <th>Gratuito</th>
                     <th>Sconto</th>
-                    <th>Azienda</th>
+                    <th>Company</th>
                     <th>Data creazione</th>
                 </tr>
             </thead>
@@ -26,7 +26,7 @@
                     <td>
                         {{ voucher.sconto }}
                     </td>
-                    <td>{{ voucher.azienda.ragioneSociale }}</td>
+                    <td>{{ voucher.company.ragioneSociale }}</td>
                     <td>{{ dateFormat(voucher.created_at) }}</td>
                 </tr>
             </tbody>

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
-use App\Azienda;
+use App\Company;
 use App\Voucher;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Azienda::class, 3)->create()->each(function ($company) {
+        factory(Company::class, 3)->create()->each(function ($company) {
 
             $faker = \Faker\Factory::create();
 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             
             $company->vouchers()->saveMany(
                 factory(Voucher::class, 5)->create([
-                    'azienda_id' => $company->id, 
+                    'company_id' => $company->id, 
                     'gratuito' => $gratuito,
                     'sconto' => $sconto
                     ])

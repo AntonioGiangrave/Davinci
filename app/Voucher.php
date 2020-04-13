@@ -3,22 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Azienda;
+use App\Company;
 
 class Voucher extends Model
 {
    
     protected $fillable =[
-        'azienda_id',
+        'company_id',
         'voucher',
         'gratuito',
         'sconto'
     ];
     
 
-    public function azienda(){
+    public function company(){
         
-        return $this->belongsTo(Azienda::class);
+        return $this->belongsTo(Company::class);
 
     }
 

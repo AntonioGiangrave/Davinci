@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Azienda;
+use App\Company;
 use App\Voucher;
 
 class Controller extends BaseController
@@ -27,7 +27,7 @@ class Controller extends BaseController
             return response()->json('Error: sconto and gratuito not null', 422);
         }
 
-        $company = Azienda::create([
+        $company = Company::create([
             'ragioneSociale' => $request->ragioneSociale
         ]);
 
@@ -35,7 +35,7 @@ class Controller extends BaseController
 
         foreach ($vouchers as $voucher) {
             Voucher::create([
-                'azienda_id' => $company->id,
+                'company_id' => $company->id,
                 'voucher' => $voucher, 
                 'gratuito' => $request->gratuito,
                 'sconto' => $request->sconto,
@@ -54,7 +54,7 @@ class Controller extends BaseController
 
     public function getVouchersList(Request $request){
 
-        $Vouchers = Voucher::with('azienda')->orderBy('created_at', 'desc')->get();
+        $Vouchers = Voucher::with('company')->orderBy('created_at', 'desc')->get();
 
         return response()->json($Vouchers, 200);
 

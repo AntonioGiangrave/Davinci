@@ -9,6 +9,9 @@ docker_up_detached:
 	make docker_down
 	docker-compose -f docker-compose.yml up -d
 
+migrate-refresh:
+	php artisan migrate:refresh
+
 test:
 	clear
 	./vendor/bin/phpunit

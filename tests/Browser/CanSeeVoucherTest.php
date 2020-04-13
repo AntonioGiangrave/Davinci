@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use App\Azienda;
+use App\Company;
 use App\Voucher;
 
 class CanSeeVoucherTest extends DuskTestCase
@@ -21,21 +21,21 @@ class CanSeeVoucherTest extends DuskTestCase
     public function testCanSeeCompany()
     {
 
-        $companies = factory(Azienda::class, 2)->create();
+        $companies = factory(Company::class, 2)->create();
 
         $voucher[] = factory(Voucher::class)->create([
-            'azienda_id' => $companies[0]->id,  
+            'company_id' => $companies[0]->id,  
             'gratuito' => 1,
             'sconto' => 0]);
         
         $voucher[] = factory(Voucher::class)->create([
-            'azienda_id' => $companies[0]->id,  
+            'company_id' => $companies[0]->id,  
             'gratuito' => 1,
             'sconto' => 0]);
         
         
         $voucher[] = factory(Voucher::class)->create([
-            'azienda_id' => $companies[1]->id,  
+            'company_id' => $companies[1]->id,  
             'gratuito' => 1,
             'sconto' => 0]);
         

@@ -20,7 +20,7 @@ export default {
 
     actions: {
         getAllCompanies(context) {
-            const uri = "/aziende";
+            const uri = "/companies";
             http.get(uri)
                 .then(response => {
                     context.commit("companies", response.data);
