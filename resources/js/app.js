@@ -13,12 +13,17 @@ import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
+import Vuex from "vuex";
+
 import App from "./App.vue";
-Vue.use(VueAxios, axios);
+Vue.use(VueAxios, axios, Vuex);
 
 import RagioniSocialiComponent from "./components/RagioniSociali.vue";
 import VoucherComponent from "./components/Voucher.vue";
 import VoucherListComponent from "./components/VoucherList.vue";
+import storeData from "./store/index";
+
+const store = new Vuex.Store(storeData);
 
 const routes = [
     {
@@ -44,4 +49,4 @@ const routes = [
 ];
 
 const router = new VueRouter({ mode: "history", routes: routes });
-const app = new Vue(Vue.util.extend({ router }, App)).$mount("#app");
+const app = new Vue(Vue.util.extend({ router, store }, App)).$mount("#app");

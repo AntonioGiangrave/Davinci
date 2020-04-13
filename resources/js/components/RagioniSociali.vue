@@ -2,17 +2,6 @@
     <div>
         <h1>Ragioni Sociali</h1>
 
-        <b-button
-            size="sm"
-            class="my-2 my-sm-0"
-            type="button"
-            
-            @click="seed"
-        >
-            <b-icon icon="cloud-upload" font-scale="1"></b-icon> Populate
-            DB</b-button
-        >
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -33,9 +22,24 @@
                                 name: 'voucher',
                                 params: { id: company.id }
                             }"
-                            class="btn btn-primary"
-                            >View</router-link
+                            variant="dark"
                         >
+                            <b-button
+                                size="sm"
+                                class="my-2 my-sm-0"
+                                type="button"
+                                variant="dark"
+                                @click="seed()"
+                            > VIEW
+                                <b-icon
+                                    icon="reply"
+                                    font-scale="1"
+                                ></b-icon>
+                                </b-button
+                            ></router-link
+                        >
+
+                        
                     </td>
                 </tr>
             </tbody>
@@ -45,35 +49,19 @@
 
 <script>
 import { format } from "date-fns";
-import http from "../http-common";
 
 export default {
-    data() {
-        return {
-            companies: []
-        };
+    mounted() {
+        this.$store.dispatch("getAllCompanies");
     },
-    created() {
-        this.fetchCompanies();
+    computed: {
+        companies() {
+            return this.$store.getters.getCompanies;
+        }
     },
     methods: {
         dateFormat(date) {
             return format(new Date(date), "dd/mm/yyyy HH:MM");
-        },
-        fetchCompanies() {
-            const uri = "/aziende";
-
-            http.get(uri).then(response => {
-                this.companies = response.data;
-            });
-        },
-        seed() {
-            const uri = "/seed";
-
-            http.get(uri).then(response => {
-                console.log("seeded");
-                this.fetchCompanies();
-            });
         }
     }
 };

@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Voucher {{ company }}</h1>
+       
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -37,19 +38,17 @@ import { format } from "date-fns";
 import http from "../http-common";
 
 export default {
-    data() {
-        return {
-            company: "",
-            vouchers: []
-        };
+    mounted() {
+        this.$store.dispatch("getCompanyVouchers", this.$route.params.id);
     },
-    created() {
-        const uri = `/vouchers/${this.$route.params.id}`;
-        
-        http.get(uri).then(response => {
-            this.company = response.data.ragioneSociale;
-            this.vouchers = response.data.vouchers;
-        });
+
+    computed: {
+        vouchers() {
+            return this.$store.getters.getVouchers;
+        },
+        company() {
+            return this.$store.getters.getCurrentCompany;
+        }
     },
     methods: {
         dateFormat(date) {

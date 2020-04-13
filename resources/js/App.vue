@@ -1,8 +1,7 @@
 <template>
-
-    <div class="container">
-        <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand href="#">Davinci </b-navbar-brand>
+    <div class="">
+        <b-navbar toggleable="lg" type="dark" variant="dark" sticky>
+            <b-navbar-brand href="/">DaVinci</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -18,7 +17,37 @@
 
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
-                   
+                    <b-button
+                        size="sm"
+                        v-b-tooltip.hover title="Populate DB"
+                        class="mx-2 my-sm-0"
+                        type="button"
+                        variant="warning"
+                        @click="seed()"
+                    >
+                        <b-icon icon="cloud-upload" font-scale="1"></b-icon>
+                        Populate DB</b-button
+                    >
+                    <b-button
+                        size="sm"
+                        v-b-tooltip.hover title="Aggiorna dati"
+                        class="mx-2 my-sm-0"
+                        type="button"
+                        variant="warning"
+                        @click="refresh()"
+                    >
+                        <b-icon icon="arrow-clockwise" font-scale="1"></b-icon>
+                    </b-button>
+                    <b-button
+                        size="sm"
+                        v-b-tooltip.hover title="Empty DB"
+                        class="mx-2 my-sm-0"
+                        type="button"
+                        variant="danger"
+                        @click="clean()"
+                    >
+                        <b-icon icon="trash" font-scale="1"></b-icon>
+                    </b-button>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -40,9 +69,17 @@
 </style>
 
 <script>
-import http from "./http-common";
-
 export default {
-   
+    methods: {
+        seed() {
+            this.$store.dispatch("seedDB");
+        },
+        clean() {
+            this.$store.dispatch("cleanDB");
+        },
+        refresh() {
+            this.$store.dispatch("refresh");
+        }
+    }
 };
 </script>

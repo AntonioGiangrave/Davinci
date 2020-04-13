@@ -29,3 +29,11 @@ Route::post('/create-voucher', 'Controller@createVoucher');
 Route::get('/seed', function() {
     return Artisan::call('db:seed');
 });
+
+Route::get('/clean', function() {
+    \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    \App\Voucher::query()->truncate();
+    \App\Azienda::query()->truncate();
+    \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    return ;
+});

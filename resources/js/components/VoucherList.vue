@@ -36,20 +36,15 @@
 
 <script>
 import { format } from "date-fns";
-import http from "../http-common";
 
 export default {
-    data() {
-        return {
-            vouchers: []
-        };
+    mounted() {
+        this.$store.dispatch("getVouchers");
     },
-    created() {
-        const uri = `/vouchers/`;
-
-        http.get(uri).then(response => {
-            this.vouchers = response.data;
-        });
+    computed: {
+        vouchers() {
+            return this.$store.getters.getVouchers;
+        }
     },
     methods: {
         dateFormat(date) {
