@@ -21,4 +21,9 @@ start:
 	php artisan config:clear
 	make docker_up_detached
 	npm run dev
-	# php artisan serve --host=test.davinci.it --port=8000
+
+start:
+	php artisan config:clear
+	make docker_up_detached
+	npm run dev
+	php artisan serve --host=test.davinci.it --port=8000
