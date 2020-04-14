@@ -22,7 +22,7 @@ start:
 	make docker_up_detached
 	npm run dev
 
-start:
+serve:
 	php artisan config:clear
 	make docker_up_detached
 	npm run dev
