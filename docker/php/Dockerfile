@@ -10,3 +10,5 @@ RUN apt-get update && apt-get install zlib1g-dev -y \
     # && docker-php-ext-install -j$(nproc) mcrypt \
     && docker-php-ext-install -j$(nproc) pdo \
     && docker-php-ext-install -j$(nproc) gd
+
+RUN pecl install redis-5.1.0

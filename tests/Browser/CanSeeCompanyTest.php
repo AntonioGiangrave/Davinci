@@ -24,7 +24,7 @@ class CanSeeCompanyTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use($company) {
             $browser->visit('/')
-                    ->assertSee($company->ragioneSociale);
+                    ->waitForText($company->ragioneSociale);
         });
     }
 }

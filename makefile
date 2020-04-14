@@ -18,7 +18,7 @@ test:
 	php artisan dusk
 
 start:
+	php artisan config:clear
 	make docker_up_detached
 	npm run dev
-	# php artisan config:clear
 	# php artisan serve --host=test.davinci.it --port=8000

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis; 
+// use Illuminate\Support\Facades\Redis; 
 use App\Company;
 
 class CompanyController extends Controller
@@ -17,14 +17,7 @@ class CompanyController extends Controller
      */
     public function getCompanies(){
 
-
-        if ($companies = Redis::get('companies.all')) { 
-            return response()->json($companies, 200);
-        } 
-
         $companies = Company::all();
-
-        Redis::setex('companies.all', 60 * 60 * 24, $companies); 
 
         return response()->json($companies, 200);
 
