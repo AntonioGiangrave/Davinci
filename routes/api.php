@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/companies', 'CompanyController@showAll');
+Route::get('/companies', 'CompanyController@getCompanies');
 
 Route::get('/vouchers/{id}/', 'CompanyController@getVouchers');
 

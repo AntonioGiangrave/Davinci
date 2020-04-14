@@ -3,6 +3,9 @@
 
 ### Project setup
 
+```
+docker-compose build
+```
 
 ```
 composer install
@@ -20,10 +23,13 @@ rename .env.example -> .env  and check
 ### Project start - All In One
 
 ```
-make serve
+make start
 ```
 
-and go to http://test.davinci.it:8000
+and go to http://127.0.0.1:8000
+
+or  go to http://test.davinci.it:8000
+
 
 ### Project start - Single
 

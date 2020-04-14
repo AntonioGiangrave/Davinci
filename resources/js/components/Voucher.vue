@@ -12,7 +12,7 @@
                     <th>Data creazione</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody v-if="vouchers">
                 <tr v-for="voucher in vouchers" :key="voucher.id">
                     <td>{{ voucher.id }}</td>
                     <td>{{ voucher.voucher }}</td>
