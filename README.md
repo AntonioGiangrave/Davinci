@@ -20,30 +20,27 @@ rename .env.example -> .env  and check
 ```
 
 
-### Project start - All In One
+### Project start
 
 ```
 make start
 ```
 
-and go to http://127.0.0.1:8000
-
-or  go to http://test.davinci.it:8000
+Now bowse the project at
 
 
-### Project start - Single
 
 ```
-docker-compose -f docker-compose.yml up
+http://test.davinci.it:8000
 ```
+ 
+ or
 
 ```
-npm run dev
+http://127.0.0.1:8080
 ```
 
-```
-php artisan serve --host=test.davinci.it --port=8000
-```
+
 
 ### Project test
 
