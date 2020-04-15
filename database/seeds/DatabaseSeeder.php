@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache; 
 use Faker\Generator as Faker;
 use App\Company;
 use App\Voucher;
@@ -14,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+        Cache::forget('companies.all');
+        
+        Cache::forget('vouchers.all');
+
+
         factory(Company::class, 3)->create()->each(function ($company) {
 
             $faker = \Faker\Factory::create();

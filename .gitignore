@@ -4,9 +4,11 @@
 /storage/*.key
 /vendor
 /data
+/mysql-data
 .env
 .env.backup
 .phpunit.result.cache
+.vscode
 Homestead.json
 Homestead.yaml
 npm-debug.log

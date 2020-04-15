@@ -1,48 +1,57 @@
-version: '2'
-
+version: "3.2"
 services:
+  redis:
+    image: redis:alpine
+    container_name: davinci-docker-redis
+    ports:
+      - "6379:6379"
 
-    nginx:
-        image: nginx:latest
-        ports:
-            - 8000:80
-        volumes:
-            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-        # depends_on:
-        volumes_from:
-            - php
+  mysql:
+    image: mysql:5.7
+    container_name: davinci-docker-mysql
+    volumes:
+      - ./mysql-data:/var/lib/mysql:cached
+      - ./docker-config/mysql:/etc/mysql/conf.d
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
 
-    php:
-        build: ./docker/php/
-        volumes:
-            - .:/var/www/html
-            - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-        links:
-            - database
-            - redis
+  webserver:
+    image: nginx:alpine
+    container_name: davinci-docker-webserver
+    working_dir: /application
+    environment:
+      SYMFONY_ENV: ${SYMFONY_ENV}
+    volumes:
+      - .:/application:cached
+      - ./docker-config/nginx/nginx_dev_davinci.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    links:
+      - php-fpm
 
-        environment:
-            - "DB_PORT=3306"
-            - "DB_HOST=database"
+  php-fpm:
+    build:
+      context: ./docker-config/php-fpm
+      args:
+        - xdebug=${XDEBUG}
+    container_name: davinci-docker-php-fpm
+    working_dir: /application
+    environment:
+      SYMFONY_ENV: ${SYMFONY_ENV}
+      XDEBUG: ${XDEBUG}
+      XDEBUG_HOST: ${XDEBUG_HOST}
+      PHP_TIMEZONE: ${PHP_TIMEZONE}
+      PHP_DISPLAY_ERRORS: ${PHP_DISPLAY_ERRORS}
+    volumes:
+      - .:/application:cached
+      - ./docker-config/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/98-overrides.ini
+      - ./docker-config/php-fpm/www-custom.conf:/usr/local/etc/php-fpm.d/www-custom.conf
 
-     
-    database:
-        image: mysql:${DB_VERSION}
-        restart: always
-        env_file:
-            - ".env"
-        environment:
-            - MYSQL_DATABASE=${DB_DATABASE}
-            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-            - MYSQL_USER=${DB_USERNAME}
-            - MYSQL_PASSWORD=${DB_PASSWORD}
-        ports:
-            - "${DB_PORT}:3306"
-        volumes:
-            - "${DATA_MYSQL}:/var/lib/mysql"
-
-    redis:
-        image: redis:4.0
-        ports:
-            - "6382:6379"
-
+    links:
+      - mysql
+      - redis

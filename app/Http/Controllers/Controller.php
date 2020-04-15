@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Cache; 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -15,6 +16,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function createVoucher(Request $request){
+
 
 
         $validatedData = $request->validate([
@@ -42,6 +44,10 @@ class Controller extends BaseController
             ]);
         }
 
+        Cache::forget('companies.all');
+
+        Cache::forget('vouchers.all');
+
         return response()->json([
             'vouchers' => $vouchers,
             'ragioneSociale' => $company->ragioneSociale,
@@ -54,7 +60,15 @@ class Controller extends BaseController
 
     public function getVouchersList(Request $request){
 
+        $cacheKey = 'vouchers.all';
+
+        if(Cache::has($cacheKey)){
+            return response()->json(Cache::get($cacheKey), 200);
+        }
+
         $Vouchers = Voucher::with('company')->orderBy('created_at', 'desc')->get();
+
+        Cache::put($cacheKey, $Vouchers);
 
         return response()->json($Vouchers, 200);
 

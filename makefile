@@ -10,7 +10,7 @@ docker_up_detached:
 	docker-compose -f docker-compose.yml up -d
 
 migrate-refresh:
-	php artisan migrate:refresh
+	env DB_HOST=127.0.0.1 	php artisan migrate:refresh
 
 test:
 	clear
@@ -19,11 +19,5 @@ test:
 
 start:
 	php artisan config:clear
-	make docker_up_detached
 	npm run dev
-
-serve:
-	php artisan config:clear
 	make docker_up_detached
-	npm run dev
-	php artisan serve --host=test.davinci.it --port=8000
