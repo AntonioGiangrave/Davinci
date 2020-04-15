@@ -15,10 +15,6 @@ composer install
 npm i
 ```
 
-```
-rename .env.example -> .env  and check
-```
-
 
 ### Project start
 
