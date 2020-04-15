@@ -30,6 +30,8 @@ export default {
                 });
         },
         getCompanyVouchers(context, companyId) {
+            context.commit("vouchers", []);
+
             const uri = `/vouchers/${companyId}`;
 
             http.get(uri)
@@ -45,6 +47,7 @@ export default {
                 });
         },
         getVouchers(context) {
+            context.commit("vouchers", []);
             const uri = `/vouchers`;
 
             http.get(uri)

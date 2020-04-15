@@ -1,3 +1,5 @@
+# ------------ DOCKER ACTIONS ------------
+
 docker_down:
 	docker-compose -f docker-compose.yml down --remove-orphans
 
@@ -9,16 +11,28 @@ docker_up_detached:
 	make docker_down
 	docker-compose -f docker-compose.yml up -d
 
-migrate-refresh:
-	php artisan migrate:refresh
+# ------------ DOCKER ACTIONS ------------
+
+
+# ------------ TEST ------------
+test-phpunit:
+	./vendor/bin/phpunit
+
+test-dusk:
+	env DB_HOST=127.0.0.1 php artisan dusk 
 
 test:
-	clear
-	./vendor/bin/phpunit
-	php artisan dusk
+	make test-phpunit
+	make test-dusk
+# ------------ TEST ------------
 
-serve:
-	make docker_up_detached
-	npm run dev
+
+
+migrate-refresh:
+	env DB_HOST=127.0.0.1 php artisan migrate:refresh
+
+
+start:
 	php artisan config:clear
-	php artisan serve --host=test.davinci.it --port=8000
+	npm run dev
+	make docker_up_detached

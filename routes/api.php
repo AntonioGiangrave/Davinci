@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cache; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/companies', 'CompanyController@showAll');
+Route::get('/companies', 'CompanyController@getCompanies');
 
 Route::get('/vouchers/{id}/', 'CompanyController@getVouchers');
 
@@ -31,6 +33,11 @@ Route::get('/seed', function() {
 });
 
 Route::get('/clean', function() {
+
+    Cache::forget('companies.all');
+        
+    Cache::forget('vouchers.all');
+
     \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     \App\Voucher::query()->truncate();
     \App\Company::query()->truncate();

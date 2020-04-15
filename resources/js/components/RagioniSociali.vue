@@ -11,7 +11,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody v-if="companies">
                 <tr v-for="company in companies" :key="company.id">
                     <td>{{ company.id }}</td>
                     <td>{{ company.ragioneSociale }}</td>
@@ -29,7 +29,8 @@
                                 class="my-2 my-sm-0"
                                 type="button"
                                 variant="dark"
-                                @click="seed()"
+                                :id="'view-'+company.id"
+                                 
                             > VIEW
                                 <b-icon
                                     icon="reply"
