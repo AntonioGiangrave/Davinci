@@ -29,10 +29,18 @@ test:
 
 
 migrate-refresh:
+	
 	env DB_HOST=127.0.0.1 php artisan migrate:refresh
+
+
+welcome-message:
+	$(info Your project is at: http://test.davinci.it:8080)
 
 
 start:
 	php artisan config:clear
 	npm run dev
 	make docker_up_detached
+	make migrate-refresh
+	make welcome-message
+	
