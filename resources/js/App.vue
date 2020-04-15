@@ -30,7 +30,7 @@
                     >
                     <b-button
                         size="sm"
-                        v-b-tooltip.hover title="Aggiorna dati"
+                        v-b-tooltip.hover title="Refresh"
                         class="mx-2 my-sm-0"
                         type="button"
                         variant="warning"

@@ -42,10 +42,10 @@ class CanSeeVoucherTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use($voucher) {
             $browser->visit('/voucherlist')
+                    ->waitFor('tbody')
                     ->assertSee($voucher[0]->voucher)
                     ->assertSee($voucher[1]->voucher)
                     ->assertSee($voucher[2]->voucher)
-                    // ->waitForText($voucher[2]->voucher)
                     ;
         });
     }

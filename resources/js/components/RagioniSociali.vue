@@ -29,6 +29,7 @@
                                 class="my-2 my-sm-0"
                                 type="button"
                                 variant="dark"
+                                :id="'view-'+company.id"
                                  
                             > VIEW
                                 <b-icon

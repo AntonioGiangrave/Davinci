@@ -17,8 +17,6 @@ class Controller extends BaseController
 
     public function createVoucher(Request $request){
 
-
-
         $validatedData = $request->validate([
             'ragioneSociale' => 'required',
             'numeroVoucher' => 'required',
@@ -66,11 +64,11 @@ class Controller extends BaseController
             return response()->json(Cache::get($cacheKey), 200);
         }
 
-        $Vouchers = Voucher::with('company')->orderBy('created_at', 'desc')->get();
+        $vouchers = Voucher::with('company')->orderBy('created_at', 'desc')->get();
 
-        Cache::put($cacheKey, $Vouchers);
+        Cache::put($cacheKey, $vouchers);
 
-        return response()->json($Vouchers, 200);
+        return response()->json($vouchers, 200);
 
     }
 
