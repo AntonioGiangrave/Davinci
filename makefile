@@ -20,27 +20,23 @@ test-phpunit:
 
 test-dusk:
 	env DB_HOST=127.0.0.1 php artisan dusk 
+	# docker exec davinci-docker-php-fpm php artisan migrate
+	# docker exec davinci-docker-php-fpm php artisan dusk
 
 test:
 	make test-phpunit
-	make test-dusk
+	# make test-dusk
 # ------------ TEST ------------
 
-
-
 migrate-refresh:
-	
-	env DB_HOST=127.0.0.1 php artisan migrate:refresh
+	docker exec davinci-docker-php-fpm php artisan migrate:refresh
 
-
-welcome-message:
-	$(info Your project is at: http://test.davinci.it:8080)
-
+migrate:
+	docker exec davinci-docker-php-fpm php artisan migrate
 
 start:
 	php artisan config:clear
 	npm run dev
 	make docker_up_detached
 	make migrate-refresh
-	make welcome-message
 	

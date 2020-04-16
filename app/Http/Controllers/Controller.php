@@ -42,9 +42,7 @@ class Controller extends BaseController
             ]);
         }
 
-        Cache::forget('companies.all');
-
-        Cache::forget('vouchers.all');
+        Cache::flush();
 
         return response()->json([
             'vouchers' => $vouchers,

@@ -27,13 +27,11 @@ class CanSeeCompanyTest extends DuskTestCase
             'company_id' => $company->id,  
             'gratuito' => 1,
             'sconto' => 0]);
-        
+
         $voucher[] = factory(Voucher::class)->create([
             'company_id' => $company->id,  
             'gratuito' => 1,
             'sconto' => 0]);
-        
-        
 
         $this->browse(function (Browser $browser) use($company, $voucher) {
             $browser->visit('/')
@@ -48,4 +46,5 @@ class CanSeeCompanyTest extends DuskTestCase
                     ;
         });
     }
+ 
 }

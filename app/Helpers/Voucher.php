@@ -7,7 +7,7 @@
         $vouchers = [];
 
         // todo: check infinite loop
-        while (count($vouchers) <= $quantity) {
+        while (count($vouchers) < $quantity) {
 
             // prefix
             $voucher = substr($prefix, 0, $prefix_len);

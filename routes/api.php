@@ -34,9 +34,7 @@ Route::get('/seed', function() {
 
 Route::get('/clean', function() {
 
-    Cache::forget('companies.all');
-        
-    Cache::forget('vouchers.all');
+    Cache::flush();
 
     \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     \App\Voucher::query()->truncate();
