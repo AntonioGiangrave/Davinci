@@ -1,4 +1,18 @@
-# Davinci
+# Company - Voucher Request API
+
+Allowed HTTP request:
+
+POST Request
+```
+string: ragioneSociale
+
+int: numeroVoucher
+
+boolean: gratuito
+
+int: sconto
+```
+
 
 
 ### Project setup
