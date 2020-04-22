@@ -20,7 +20,7 @@
                         <router-link
                             :to="{
                                 name: 'voucher',
-                                params: { id: company.id }
+                                params: { id: company.id },
                             }"
                             variant="dark"
                         >
@@ -29,18 +29,14 @@
                                 class="my-2 my-sm-0"
                                 type="button"
                                 variant="dark"
-                                :id="'view-'+company.id"
-                                 
-                            > VIEW
+                                :id="'view-' + company.id"
+                            >
+                                VIEW
                                 <b-icon
                                     icon="reply"
                                     font-scale="1"
-                                ></b-icon>
-                                </b-button
-                            ></router-link
-                        >
-
-                        
+                                ></b-icon> </b-button
+                        ></router-link>
                     </td>
                 </tr>
             </tbody>
@@ -58,12 +54,12 @@ export default {
     computed: {
         companies() {
             return this.$store.getters.getCompanies;
-        }
+        },
     },
     methods: {
         dateFormat(date) {
             return format(new Date(date), "dd/mm/yyyy HH:MM");
-        }
-    }
+        },
+    },
 };
 </script>

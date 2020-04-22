@@ -29,17 +29,19 @@ class GenerateVoucherTest extends TestCase
         $sconto = $gratuito ? 0 : $faker->randomDigit;
 
         $voucher = factory(Voucher::class, 2)->create([
-            'company_id' => $company->id, 
+            'company_id' => $company->id,
             'gratuito' => $gratuito,
-            'sconto' => $sconto
-            ]);
+            'sconto' => $sconto,
+        ]);
 
         $prefix = substr($company->ragioneSociale, 0, 2);
-        $this->assertRegExp('/('.$prefix.'+[A-Za-z0-9]{4})/i',$voucher[0]->voucher);
-        $this->assertRegExp('/('.$prefix.'+[A-Za-z0-9]{4})/i',$voucher[1]->voucher);
-
-
-
-
+        $this->assertRegExp(
+            '/(' . $prefix . '+[A-Za-z0-9]{4})/i',
+            $voucher[0]->voucher
+        );
+        $this->assertRegExp(
+            '/(' . $prefix . '+[A-Za-z0-9]{4})/i',
+            $voucher[1]->voucher
+        );
     }
 }

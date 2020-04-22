@@ -16,7 +16,10 @@ class CreateVouchers extends Migration
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             // $table->unsignedInteger('company_id');
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table
+                ->foreignId('company_id')
+                ->references('id')
+                ->on('companies');
             $table->string('voucher');
             $table->tinyInteger('gratuito')->nullable();
             $table->integer('sconto')->nullable();

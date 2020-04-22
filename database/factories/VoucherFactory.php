@@ -8,7 +8,6 @@ use App\Company;
 use Faker\Generator as Faker;
 
 $factory->define(Voucher::class, function (Faker $faker, $params) {
-
     $company = Company::find($params['company_id']);
 
     return [

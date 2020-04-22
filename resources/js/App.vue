@@ -19,7 +19,8 @@
                 <b-navbar-nav class="ml-auto">
                     <b-button
                         size="sm"
-                        v-b-tooltip.hover title="Populate DB"
+                        v-b-tooltip.hover
+                        title="Populate DB"
                         class="mx-2 my-sm-0"
                         type="button"
                         variant="warning"
@@ -30,7 +31,8 @@
                     >
                     <b-button
                         size="sm"
-                        v-b-tooltip.hover title="Refresh"
+                        v-b-tooltip.hover
+                        title="Refresh"
                         class="mx-2 my-sm-0"
                         type="button"
                         variant="warning"
@@ -40,7 +42,8 @@
                     </b-button>
                     <b-button
                         size="sm"
-                        v-b-tooltip.hover title="Empty DB"
+                        v-b-tooltip.hover
+                        title="Empty DB"
                         class="mx-2 my-sm-0"
                         type="button"
                         variant="danger"
@@ -79,7 +82,7 @@ export default {
         },
         refresh() {
             this.$store.dispatch("refresh");
-        }
-    }
+        },
+    },
 };
 </script>

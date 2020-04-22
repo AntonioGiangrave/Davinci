@@ -8,22 +8,16 @@ class Company extends Model
 {
     //
 
-
     protected $table = 'companies';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'ragioneSociale',
-    ];
-    
+    protected $fillable = ['ragioneSociale'];
 
-    public function vouchers(){
-
+    public function vouchers()
+    {
         return $this->hasMany(Voucher::class);
-
     }
-
 }

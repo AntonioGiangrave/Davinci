@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Company::class, function (Faker $faker) {
     return [
-        'ragioneSociale' => $faker->company
+        'ragioneSociale' => $faker->company,
     ];
 });

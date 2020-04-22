@@ -10,10 +10,8 @@ use App\Company;
 use App\Voucher;
 use Faker\Generator as Faker;
 
-
 class GetVouchersTest extends TestCase
 {
-
     use DatabaseMigrations;
 
     /**
@@ -32,26 +30,19 @@ class GetVouchersTest extends TestCase
         $sconto = $gratuito ? 0 : $faker->randomDigit;
 
         factory(Voucher::class)->create([
-            'company_id' => $company->id, 
+            'company_id' => $company->id,
             'gratuito' => $gratuito,
-            'sconto' => $sconto
-            ]);
+            'sconto' => $sconto,
+        ]);
 
-        $response = $this->get('/api/vouchers/'.$company->id);
+        $response = $this->get('/api/vouchers/' . $company->id);
 
-
-        $response 
+        $response
             ->assertStatus(200)
             ->assertJsonFragment([
                 'id' => $company->id,
                 'ragioneSociale' => $company->ragioneSociale,
-            ])  
-            ->assertJsonStructure([
-                'id' ,
-                'ragioneSociale' ,
-                'vouchers',
             ])
-            ;
-
+            ->assertJsonStructure(['id', 'ragioneSociale', 'vouchers']);
     }
 }

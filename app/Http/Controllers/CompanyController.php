@@ -3,23 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache; 
+use Illuminate\Support\Facades\Cache;
 use App\Company;
 
 class CompanyController extends Controller
 {
-    
     /**
      * get all companies
-     * 
-     * @return 
-     * 
+     *
+     * @return
+     *
      */
-    public function getCompanies(){
-
+    public function getCompanies()
+    {
         $cacheKey = 'companies.all';
 
-        if(Cache::has($cacheKey)){
+        if (Cache::has($cacheKey)) {
             return response()->json(Cache::get($cacheKey), 200);
         }
 
@@ -28,20 +27,19 @@ class CompanyController extends Controller
         Cache::put($cacheKey, $companies);
 
         return response()->json($companies, 200);
-
     }
 
     /**
      * get company vouchers
-     * 
-     * @return 
-     * 
+     *
+     * @return
+     *
      */
-    public function getVouchers(Request $request, $id){
+    public function getVouchers(Request $request, $id)
+    {
+        $cacheKey = 'company' . $id;
 
-        $cacheKey = 'company'.$id;
-
-        if(Cache::has($cacheKey)){
+        if (Cache::has($cacheKey)) {
             return response()->json(Cache::get($cacheKey), 200);
         }
 
@@ -50,9 +48,5 @@ class CompanyController extends Controller
         Cache::put($cacheKey, $company);
 
         return response()->json($company, 200);
-
     }
-
-
-
 }

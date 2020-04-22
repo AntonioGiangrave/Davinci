@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Voucher {{ company }}</h1>
-       
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -48,12 +48,12 @@ export default {
         },
         company() {
             return this.$store.getters.getCurrentCompany;
-        }
+        },
     },
     methods: {
         dateFormat(date) {
             return format(new Date(date), "dd/mm/yyyy HH:MM");
-        }
-    }
+        },
+    },
 };
 </script>

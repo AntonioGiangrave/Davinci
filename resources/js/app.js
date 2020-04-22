@@ -29,23 +29,23 @@ const routes = [
     {
         name: "index",
         path: "/",
-        component: RagioniSocialiComponent
+        component: RagioniSocialiComponent,
     },
     {
         name: "ragionisociali",
         path: "/ragionisociali",
-        component: RagioniSocialiComponent
+        component: RagioniSocialiComponent,
     },
     {
         name: "voucher",
         path: "/voucher/:id",
-        component: VoucherComponent
+        component: VoucherComponent,
     },
     {
         name: "voucherlist",
         path: "/voucherlist/",
-        component: VoucherListComponent
-    }
+        component: VoucherListComponent,
+    },
 ];
 
 const router = new VueRouter({ mode: "history", routes: routes });

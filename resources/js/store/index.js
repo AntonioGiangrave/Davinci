@@ -4,7 +4,7 @@ export default {
     state: {
         companies: [],
         currentCompany: "",
-        vouchers: []
+        vouchers: [],
     },
     getters: {
         getCompanies(state) {
@@ -15,17 +15,17 @@ export default {
         },
         getCurrentCompany(state) {
             return state.currentCompany;
-        }
+        },
     },
 
     actions: {
         getAllCompanies(context) {
             const uri = "/companies";
             http.get(uri)
-                .then(response => {
+                .then((response) => {
                     context.commit("companies", response.data);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         },
@@ -35,14 +35,14 @@ export default {
             const uri = `/vouchers/${companyId}`;
 
             http.get(uri)
-                .then(response => {
+                .then((response) => {
                     context.commit("vouchers", response.data.vouchers);
                     context.commit(
                         "currentCompany",
                         response.data.ragioneSociale
                     );
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         },
@@ -51,10 +51,10 @@ export default {
             const uri = `/vouchers`;
 
             http.get(uri)
-                .then(response => {
+                .then((response) => {
                     context.commit("vouchers", response.data);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         },
@@ -66,23 +66,23 @@ export default {
         seedDB() {
             const uri = `/seed`;
             http.get(uri)
-                .then(response => {
+                .then((response) => {
                     this.dispatch("refresh");
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         },
         cleanDB() {
             const uri = `/clean`;
             http.get(uri)
-                .then(response => {
+                .then((response) => {
                     this.dispatch("refresh");
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
-        }
+        },
     },
 
     mutations: {
@@ -94,6 +94,6 @@ export default {
         },
         currentCompany(state, data) {
             return (state.currentCompany = data);
-        }
-    }
+        },
+    },
 };

@@ -10,7 +10,6 @@ use App\Company;
 
 class GetCompaniesTest extends TestCase
 {
-
     use DatabaseMigrations;
 
     /**
@@ -22,20 +21,17 @@ class GetCompaniesTest extends TestCase
     {
         $companies = factory(Company::class, 2)->create();
 
-
         $response = $this->get('/api/companies');
 
-
-        $response 
+        $response
             ->assertStatus(200)
             ->assertJsonFragment([
                 'id' => $companies[0]->id,
-                'ragioneSociale'=> $companies[0]->ragioneSociale,
+                'ragioneSociale' => $companies[0]->ragioneSociale,
             ])
             ->assertJsonFragment([
                 'id' => $companies[1]->id,
-                'ragioneSociale'=> $companies[1]->ragioneSociale,
+                'ragioneSociale' => $companies[1]->ragioneSociale,
             ]);
-
     }
 }

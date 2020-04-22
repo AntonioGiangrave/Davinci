@@ -64,6 +64,10 @@
             "@php artisan key:generate --ansi",
             "npm i",
             "docker-compose build"
+        ],
+        "fix-cs": [
+            "prettier * --write",
+            "php-cs-fixer fix"
         ]
     }
 }
